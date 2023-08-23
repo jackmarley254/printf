@@ -57,9 +57,8 @@ int _strlen(const char *);
 int print(char *);
 char *itoa(long int, int);
 
-int handler(const char *str, va_list list);
+int percent_handler(const char *str, va_list list, int *i);
 
-int percent_handler(const char *format, va_list list, int *i);
 
 /* printf.c */
 int _printf(const char *, ...);
