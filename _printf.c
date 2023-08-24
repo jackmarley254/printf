@@ -10,48 +10,21 @@
  **/
 int _printf(const char *format, ...)
 {
-	int size = 0;
+	int size;
 	va_list args;
-	char c;
+
+	if (format == NULL)
+		return (-1);
+
+	size = _strlen(format);
+	if (size <= 0)
+		return (0);
 
 	va_start(args, format);
+	size = handler(format, args);
 
-	while (*format)
-	{
-		if (*format == '%')
-		{
-			format++;
-			if (*format == 'c')
-			{
-				c = (char)va_arg(args, int);
-				write(1, &c, 1);
-				size++;
-			}
-			else if (*format == 's')
-			{
-				char *str = va_arg(args, char *);
-
-				while (*str)
-				{
-					write(1, str, 1);
-					str++;
-					size++;
-				}
-			}
-			else if (*format == '%')
-			{
-				write(1, "%", 1);
-				size++;
-			}
-		}
-		else
-		{
-			write(1, format, 1);
-			size++;
-		}
-
-		format++;
-	}
+	_putchar(-1);
 	va_end(args);
+
 	return (size);
 }
